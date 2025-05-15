@@ -40,6 +40,7 @@ async function bootstrap() {
 
   await app.startAllMicroservices();
   console.log('Product-Order Service is listening to order_queue...');
+  app.setGlobalPrefix('api');
   await app.listen(process.env.PORT ?? 3002);
 }
 bootstrap();
