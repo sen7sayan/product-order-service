@@ -8,7 +8,9 @@ import { Product } from '../product/product.entity';
 import { JwtStrategy } from 'src/auth/jwt.strategy';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([Order, OrderItem, Product])],
+  imports: [TypeOrmModule.forFeature([Order, OrderItem, Product]),
+
+],
   providers: [OrderService,JwtStrategy],
   controllers: [OrderController],
 })
