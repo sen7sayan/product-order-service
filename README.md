@@ -114,27 +114,4 @@ Fetches detailed information about a specific product by its ID.
 
 
 
-## ✅ Customer Profile
-
-**GET** `/api/customer`
-
-**Request Body:**
-Headers:
-Authorization: Bearer <token>
-
-
-
-
-**Response:**
-
-```json
-{
-  "name": "ram kumar",
-  "email": "abc5@gmail.com",
-  "phone": "7539518521",
-  "address": "abc colony"
-}
-
-```
-
 
