@@ -1,98 +1,140 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# 📦 Product Microservice
+This microservice handles product data including fetching product lists and product details. It supports pagination and provides detailed product info. It does not handle customer or order logic directly.
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+---
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## 🚀 Base URL
 
-## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+---
 
-## Project setup
+## ✅ Register a New Customer
 
-```bash
-$ npm install
+**GET** `/api/product?page=1&limit=10`
+
+*Description*
+Fetches a paginated list of products.
+page - Page number to retrieve
+limit - Number of products per page
+
+
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "message": "Products fetched successfully",
+  "data": [
+    {
+      "id": "86b1578f-042f-4652-aadc-3338e9a52060",
+      "name": "Banana",
+      "description": "Banana is a fruit",
+      "price": "4.00",
+      "stock": 49,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvuFWmgStX6zF38A7ZufXtDXTlUag-rcKnew&s",
+      "createdAt": "2025-05-15T03:23:30.162Z",
+      "updatedAt": "2025-05-15T13:29:31.926Z"
+    },
+    {
+      "id": "d3a87d0f-ce3e-4170-9fc6-21bfd5a5cbe7",
+      "name": "Banana",
+      "description": "Banana is a fruit",
+      "price": "4.00",
+      "stock": 43,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvuFWmgStX6zF38A7ZufXtDXTlUag-rcKnew&s",
+      "createdAt": "2025-05-15T03:22:46.164Z",
+      "updatedAt": "2025-05-15T15:38:53.635Z"
+    },
+    {
+      "id": "af06c7c9-fe16-49c1-aa21-8fd143fd018f",
+      "name": "Apple",
+      "description": "Apple is a fruit",
+      "price": "20.00",
+      "stock": 79,
+      "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtkzZMTh_n9DE3CznuCnA8wVdQI7IQT9sDng&s",
+      "createdAt": "2025-05-15T03:22:00.230Z",
+      "updatedAt": "2025-05-15T13:42:54.627Z"
+    },
+    {
+      "id": "fdeb9954-cfab-4342-a772-8e4ea033560e",
+      "name": "Coconut",
+      "description": "Banana is a fruit",
+      "price": "4.00",
+      "stock": 29,
+      "image": "https://www.producemarketguide.com/media/user_5q6Kv4eMkN/347/coconut_commodity-page.png",
+      "createdAt": "2025-05-15T03:21:11.629Z",
+      "updatedAt": "2025-05-15T14:00:19.553Z"
+    }
+  ],
+  "meta": {
+    "total": 4,
+    "page": 1,
+    "limit": 10,
+    "totalPages": 1
+  }
+}
+
 ```
 
-## Compile and run the project
 
-```bash
-# development
-$ npm run start
 
-# watch mode
-$ npm run start:dev
 
-# production mode
-$ npm run start:prod
+## ✅ Single Product
+
+**GET** `/api/product/{id}`
+
+*Description
+Fetches detailed information about a specific product by its ID.
+
+**Response:**
+
+```json
+{
+  "statusCode": 200,
+  "message": "Product fetched successfully",
+  "data": {
+    "id": "86b1578f-042f-4652-aadc-3338e9a52060",
+    "name": "Banana",
+    "description": "Banana is a fruit",
+    "price": "4.00",
+    "stock": 49,
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRvuFWmgStX6zF38A7ZufXtDXTlUag-rcKnew&s",
+    "createdAt": "2025-05-15T03:23:30.162Z",
+    "updatedAt": "2025-05-15T13:29:31.926Z"
+  }
+}
+
+
 ```
 
-## Run tests
 
-```bash
-# unit tests
-$ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
-# test coverage
-$ npm run test:cov
+
+
+
+## ✅ Customer Profile
+
+**GET** `/api/customer`
+
+**Request Body:**
+Headers:
+Authorization: Bearer <token>
+
+
+
+
+**Response:**
+
+```json
+{
+  "name": "ram kumar",
+  "email": "abc5@gmail.com",
+  "phone": "7539518521",
+  "address": "abc colony"
+}
+
 ```
 
-## Deployment
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
-
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
-
-```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
-```
-
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
-
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
